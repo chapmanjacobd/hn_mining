@@ -1,12 +1,17 @@
 # hn_mining
 
+Welcome! The goal of this repo is to learn new things from HackerNews without having to read everything.
+
 ## Observations
 
 ### soft quotes in hn_comment_nouns_common
 
+```sh
+$ cat hn_comment_nouns_common
 126179 ”
+```
 
-There are 126,000+ quotations on HN using soft quotes. I find this deeply disturbing.
+There are 126,000+ quotations on HackerNews using soft quotes. I find this deeply disturbing.
 
 ### Intel vs AMD
 

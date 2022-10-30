@@ -71,6 +71,19 @@ But I'm more surprised that there are only 0 or 1 mentions of the [sun god Ra](h
 Explore 39 years of content without leaving your teletype machine!
 
 ```sh
+$ lb pl hackernews.tw.db -a
+╒════════════════════════╤═════════════════╤═════════════════════════════════╤═══════════════════╤════════════════╕
+│ path                   │ duration        │ avg_playlist_duration           │   playlists_count │   videos_count │
+╞════════════════════════╪═════════════════╪═════════════════════════════════╪═══════════════════╪════════════════╡
+│ Aggregate of playlists │ 39 years, 2     │ 4 days, 14 hours and 58 minutes │              3098 │         741500 │
+│                        │ months, 27 days │                                 │                   │                │
+│                        │ and 20 hours    │                                 │                   │                │
+╘════════════════════════╧═════════════════╧═════════════════════════════════╧═══════════════════╧════════════════╛
+```
+
+This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown).
+
+```sh
 pip install xklb
 wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews.tw.db.zst
 unzstd hackernews.tw.db.zst

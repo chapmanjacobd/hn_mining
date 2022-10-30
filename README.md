@@ -104,23 +104,6 @@ library tubeupdate --extra hackernews.tw.db # this will likely take several days
 library optimize hackernews.tw.db  # optional: this will build an fts index
 ```
 
-### Mistakes
-
-If you have a careful eye you will notice that the results are not perfect. Here are some weird things I noticed which are probably my fault:
-
-#### mistakes, hn_story_common_domains
-
-- duplicates (or maybe this is a bug in uniq (GNU coreutils) 9.0 ?)
-- co.uk and other two letter subdomains are missing from my awk query
-
-#### mistakes, nouns
-
-- ” is included (fixed with [v1.19.027](https://github.com/chapmanjacobd/library/commit/7a3c313a8a95a5b7b0a8c45c900c1bdfa46e7fbc#diff-f304c25583d5896a197bcf66253cb61730c22a245fc998bb1b07cc9acb977b68)) but I'm too lazy to update the data in this repo unless someone submits a PR here
-
-#### mistakes, tubewatch
-
-- In hindsight I probably should've filtered out some spam by using `is_dead IS NULL` or something
-
 ## Recipes
 
 Prep
@@ -202,3 +185,20 @@ sqlite-utils disable-fts hackernews.tw.db media
 sqlite-utils vacuum hackernews.tw.db
 zstd hackernews.tw.db
 ```
+
+## Mistakes
+
+If you have a careful eye you will notice that the results are not perfect. Here are some weird things I noticed which are probably my fault:
+
+### mistakes, hn_story_common_domains
+
+- duplicates (or maybe this is a bug in uniq (GNU coreutils) 9.0 ?)
+- co.uk and other two letter subdomains are missing from my awk query
+
+### mistakes, nouns
+
+- ” is included (fixed with [v1.19.027](https://github.com/chapmanjacobd/library/commit/7a3c313a8a95a5b7b0a8c45c900c1bdfa46e7fbc#diff-f304c25583d5896a197bcf66253cb61730c22a245fc998bb1b07cc9acb977b68)) but I'm too lazy to update the data in this repo unless someone submits a PR here
+
+### mistakes, tubewatch
+
+- In hindsight I probably should've filtered out some spam by using `is_dead IS NULL` or something

@@ -71,6 +71,14 @@ But I'm more surprised that there are only 0 or 1 mentions of the [sun god Ra](h
 Explore 39 years of content without leaving your teletype machine!
 
 ```sh
+pip install xklb
+wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews.tw.db.zst
+unzstd hackernews.tw.db.zst
+
+library watch hackernews.tw.db --random
+```
+
+```sh
 $ lb pl hackernews.tw.db -a
 ╒════════════════════════╤═════════════════╤═════════════════════════════════╤═══════════════════╤════════════════╕
 │ path                   │ duration        │ avg_playlist_duration           │   playlists_count │   videos_count │
@@ -82,14 +90,6 @@ $ lb pl hackernews.tw.db -a
 ```
 
 This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown).
-
-```sh
-pip install xklb
-wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews.tw.db.zst
-unzstd hackernews.tw.db.zst
-
-library watch hackernews.tw.db --random
-```
 
 ### Zenodo vs GitHub TubeWatch database
 

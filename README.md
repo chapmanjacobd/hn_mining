@@ -74,10 +74,9 @@ Explore 39 years of content without leaving your teletype machine!
 
 ```sh
 pip install xklb
-wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews.tw.db.zst
-unzstd hackernews.tw.db.zst
+wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews_only_unique.tw.db
 
-library watch hackernews.tw.db --random
+library watch hackernews_only_unique.tw.db --random
 ```
 
 ```sh
@@ -89,9 +88,18 @@ $ lb pl hackernews.tw.db -a
 │                        │ months, 27 days │                                 │                   │                │
 │                        │ and 20 hours    │                                 │                   │                │
 ╘════════════════════════╧═════════════════╧═════════════════════════════════╧═══════════════════╧════════════════╛
+
+$ lb wt hackernews_only_unique.tw.db -pa
+╒═══════════╤═════════════════╤══════════════════════════╤════════╤═════════╕
+│ path      │ duration        │ avg_duration             │ size   │   count │
+╞═══════════╪═════════════════╪══════════════════════════╪════════╪═════════╡
+│ Aggregate │ 18 years, 3     │ 1 hour and 22.92 minutes │        │  115987 │
+│           │ months, 17 days │                          │        │         │
+│           │ and 22 hours    │                          │        │         │
+╘═══════════╧═════════════════╧══════════════════════════╧════════╧═════════╛
 ```
 
-This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown).
+This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown). hackernews_only_unique.tw.db is a bit smaller with _only_ 18 years of content.
 
 ### Zenodo vs GitHub TubeWatch database
 

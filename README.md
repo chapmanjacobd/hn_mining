@@ -87,8 +87,8 @@ This is what I mean by 39 years of content. 39 years of video running 24/7 (not 
 pip install xklb
 wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews.tw.db.zst
 unzstd hackernews.tw.db.zst
+
 library watch hackernews.tw.db --random
-library optimize hackernews.tw.db  # optional: this will build an fts index
 ```
 
 I had to remove some records so that the file would fit in GitHub :mr_burns.jp2000: See [HN.tw on Github](#hackernews-tubewatch-database-on-github) for details.
@@ -99,6 +99,7 @@ NB: The zenodo version does not contain _all_ metadata (subtitles, etc) either. 
 
 ```sh
 library tubeupdate --extra hackernews.tw.db # this will likely take several days
+library optimize hackernews.tw.db  # optional: this will build an fts index
 ```
 
 ### Mistakes

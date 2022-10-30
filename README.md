@@ -11,7 +11,7 @@ $ cat hn_comment_nouns_common
 126179 ”
 ```
 
-There are 126,000+ quotations on HackerNews using soft quotes. I find this deeply disturbing.
+There are 126,000+ quotations on HackerNews using smart quotes. I find this deeply disturbing.
 
 ### Intel vs AMD
 
@@ -31,7 +31,7 @@ $ grep --binary-files text -E 'Intel|AMD' hn_comment_nouns_common
   87458 Intel
 ```
 
-And Intel is mentioned even more in the comments!
+And Intel is mentioned even more in the comments (probably because AMD makes programmers' lives easier so there is no need to complain)!
 
 ### AI vs Blockchain
 
@@ -66,7 +66,7 @@ $ grep --binary-files text -E 'Apollo$|Helios$|Ra$' hn_comment_nouns_common
 
 But I'm more surprised that there are only 0 or 1 mentions of the [sun god Ra](https://en.wikipedia.org/wiki/Solar_deity).
 
-**Feel free to open a PR** to add more observations here
+Feel free to **dig into the data** and open a PR: edit this README to add more observations
 
 ## Watch HackerNews from your CLI
 
@@ -74,9 +74,9 @@ Explore 39 years of content without leaving your teletype machine!
 
 ```sh
 pip install xklb
-wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews_only_unique.tw.db
+wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews_only_direct.tw.db
 
-library watch hackernews_only_unique.tw.db --random
+library watch hackernews_only_direct.tw.db --random
 ```
 
 ```sh
@@ -88,8 +88,12 @@ $ lb pl hackernews.tw.db -a
 │                        │ months, 27 days │                                 │                   │                │
 │                        │ and 20 hours    │                                 │                   │                │
 ╘════════════════════════╧═════════════════╧═════════════════════════════════╧═══════════════════╧════════════════╛
+```
 
-$ lb wt hackernews_only_unique.tw.db -pa
+This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown).
+
+```sh
+$ lb wt hackernews_only_direct.tw.db -pa
 ╒═══════════╤═════════════════╤══════════════════════════╤════════╤═════════╕
 │ path      │ duration        │ avg_duration             │ size   │   count │
 ╞═══════════╪═════════════════╪══════════════════════════╪════════╪═════════╡
@@ -99,9 +103,7 @@ $ lb wt hackernews_only_unique.tw.db -pa
 ╘═══════════╧═════════════════╧══════════════════════════╧════════╧═════════╛
 ```
 
-This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown).
-
-hackernews_only_unique.tw.db is a subset (removing videos from playlist URLs) and is a bit smaller but still indexes 18 years of content.
+`hackernews_only_direct.tw.db` is a subset (including only direct URLs; excluding playlist URLs). It is a bit smaller but still indexes over 18 years of content.
 
 ### Zenodo vs GitHub TubeWatch database
 
@@ -112,7 +114,7 @@ The original was uploaded to [zenodo](https://zenodo.org/record/7264173).
 NB: The zenodo version does not contain _all_ metadata (subtitles, etc) either. For that, after downloading either the zenodo or GitHub version, you would need to run:
 
 ```sh
-library tubeupdate --extra hackernews.tw.db # this will likely take several days
+library tubeupdate --extra hackernews.tw.db  # this will likely take several days
 library optimize hackernews.tw.db  # optional: this will build an fts index
 ```
 
@@ -193,12 +195,47 @@ Player exited with code 2
 DELETE FROM media WHERE ie_key IN ('JWPlatform', 'Imgur', 'WSJ', 'Twitter', 'WashingtonPost', 'CBSNewsEmbed', 'CNN', 'SafariApi', 'Viidea', 'NBCNews', 'FoxNews','NineCNineMedia', 'Mixcloud', 'CBCPlayer', 'LinkedIn','AmazonStore', 'Spotify');
 DELETE FROM media WHERE playlist_path LIKE '%bostonglobe.com%';
 ALTER TABLE media DROP COLUMN tags;
+```
+
+```sh
 sqlite-utils disable-fts hackernews.tw.db media
 sqlite-utils vacuum hackernews.tw.db
 zstd hackernews.tw.db
+```
 
-cp hackernews.tw.db hackernews_only_unique.tw.db
-sqlite-utils hackernews_only_unique.tw.db 'delete from media where playlist_path in (select path from playlists)'
+### Recipe hackernews_only_direct.tw.db
+
+```sh
+cp hackernews.tw.db hackernews_only_direct.tw.db
+sqlite-utils hackernews_only_direct.tw.db 'delete from media where playlist_path in (select path from playlists)'
+```
+
+```sql
+sqlite3
+ATTACH 'hackernews_only_direct.tw.db' AS h;
+ATTACH '/home/xk/lb/hn.db' AS hn;
+
+create table hn_score as
+  select path, max(score) as score
+  from hn_story
+  where path in (select path from h.media)
+  group by 1
+;
+
+alter table h.media add column score int;
+
+UPDATE
+  h.media SET score = (
+        SELECT score
+        FROM hn_score
+        WHERE hn_score.path = h.media.path
+    )
+  WHERE
+      EXISTS(
+          SELECT 1
+          FROM hn_score
+          WHERE hn_score.path = h.media.path
+      );  -- this takes about eight minutes
 ```
 
 ## Mistakes

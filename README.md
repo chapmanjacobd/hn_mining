@@ -91,7 +91,9 @@ unzstd hackernews.tw.db.zst
 library watch hackernews.tw.db --random
 ```
 
-I had to remove some records so that the file would fit in GitHub :mr_burns.jp2000: See [HN.tw on Github](#hackernews-tubewatch-database-on-github) for details.
+### Zenodo vs GitHub TubeWatch database
+
+I had to remove some records so that the file would fit in GitHub. See [HN.tw on Github](#hackernews-tubewatch-database-on-github) for technical details.
 
 The original was uploaded to [zenodo](https://zenodo.org/record/7264173).
 

@@ -76,7 +76,7 @@ Explore 39 years of content without leaving your teletype machine!
 pip install xklb
 wget https://github.com/chapmanjacobd/hn_mining/raw/main/hackernews_only_direct.tw.db
 
-library watch hackernews_only_direct.tw.db --random
+library watch hackernews_only_direct.tw.db --random --ignore-errors
 ```
 
 ```sh

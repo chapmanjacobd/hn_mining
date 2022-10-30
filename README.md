@@ -186,6 +186,9 @@ ALTER TABLE media DROP COLUMN tags;
 sqlite-utils disable-fts hackernews.tw.db media
 sqlite-utils vacuum hackernews.tw.db
 zstd hackernews.tw.db
+
+cp hackernews.tw.db hackernews_only_unique.tw.db
+sqlite-utils hackernews_only_unique.tw.db 'delete from media where playlist_path in (select path from playlists)'
 ```
 
 ## Mistakes

@@ -15,6 +15,8 @@ There are 126,000+ quotations on HackerNews using soft quotes. I find this deepl
 
 ### Intel vs AMD
 
+First we look at hn stories (the posts that people comment on but not the comments themselves). Stories include titles and text (what reddit calls [selftext](https://news.ycombinator.com/item?id=20453120)).
+
 ```sh
 $ rg 'Intel|AMD' hn_story_nouns_common
 3921 AMD
@@ -29,7 +31,7 @@ $ grep --binary-files text -E 'Intel|AMD' hn_comment_nouns_common
   87458 Intel
 ```
 
-And Intel is mentioned even more!
+And Intel is mentioned even more in the comments!
 
 ### AI vs Blockchain
 

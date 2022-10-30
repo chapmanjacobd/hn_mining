@@ -174,7 +174,7 @@ Player exited with code 2
 ```
 
 - ie_key WSJ and FoxNews loaded nearly every time but it was always a video that didn't relate to the article lol... NBCNews also suffered from this sometimes
-- ie_key Twitter would hang often or not have a video but I did see [this really cool thing](https://twitter.com/hrishiptweets/status/1189172945437904898)!
+- ie_key Twitter would hang often or not have a video but I did see this really cool thing! edit: link removed lol. the URL pointed to something else. same problem as above.
 - ie_key WashingtonPost, CBCPlayer do not save a valid URL id so all of that data was impossible to pipe to mpv; ie_key iheartradio as well to some extent
 - ie_key SafariApi just seemed to point to Oreilly books
 - holy cow batman CCC and InfoQ videos load fast. They must have a 16 core PC with a 10 bit pipe?

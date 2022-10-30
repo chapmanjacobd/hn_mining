@@ -103,7 +103,7 @@ $ lb wt hackernews_only_direct.tw.db -pa
 ╘═══════════╧═════════════════╧══════════════════════════╧════════╧═════════╛
 ```
 
-`hackernews_only_direct.tw.db` is a subset (including only direct URLs; excluding playlist URLs). It is a bit smaller but still indexes over 18 years of content.
+`hackernews_only_direct.tw.db` is a subset (including only direct URLs; excluding playlist URLs). It is a bit smaller but still indexes over 18 years of content. edit: only 5 years of content with >7 hn score
 
 ### Zenodo vs GitHub TubeWatch database
 

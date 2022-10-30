@@ -99,7 +99,9 @@ $ lb wt hackernews_only_unique.tw.db -pa
 ╘═══════════╧═════════════════╧══════════════════════════╧════════╧═════════╛
 ```
 
-This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown). hackernews_only_unique.tw.db is a bit smaller with _only_ 18 years of content.
+This is what I mean by 39 years of content. 39 years of video running 24/7 (not including 62,876 videos [~8%] where duration is unknown).
+
+hackernews_only_unique.tw.db is a subset (removing videos from playlist URLs) and is a bit smaller but still indexes 18 years of content.
 
 ### Zenodo vs GitHub TubeWatch database
 
